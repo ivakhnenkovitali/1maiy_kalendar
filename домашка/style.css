@@ -1,0 +1,74 @@
+#container{
+    width: 290px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: blue;
+
+}
+.navigation{ /*ставит 3 колонки по центру в % */
+    display: grid;
+    grid-template-columns: 20% 1fr 20%;
+    border-top:3px solid red;
+}
+.navigation p{       /*p в html*/
+    margin: 0;
+    text-align: center;    /*текст поцентру*/
+    border-top: firebrick;
+}
+.lft span {
+    position: relative;
+    display: block;
+    border: 10px solid transparent;
+    border-right: 10px solid orangered;
+    cursor: pointer;
+    top: 6px;                   /*треугольники  3мит видео.*/
+    left: -45px;                /*смещение треугольника влево*/
+
+}
+
+.rght span {
+    position: relative;
+    display: block;
+    border: 10px solid transparent;
+    border-left: 10px solid orangered;
+    top: 6px;
+    cursor: pointer;
+    right: -45px;
+}
+.p1{
+    text-transform: uppercase;   /*август текс большими буквоми*/
+    font-size: 14px;
+    color: blue;
+}
+.p2{
+    font-size: 10px;  /*под августом*/
+    color: blue;
+}
+
+
+
+/*начало*/
+table{
+    border-collapse: collapse;
+    margin: 0 auto;  /*по центру*/
+
+}
+th {
+    color: firebrick;
+    padding: 10px;
+    border: 1px solid blue;
+}
+
+td{
+    border: 1px solid green;
+    padding: 10px;
+
+}
+
+th:last-child, td:last-child,  /* можно через , 2 выделяем вс*/
+th:nth-child(6),              /*субота 6-я покрасили*/
+td:nth-child(6){
+    color:red;
+
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id = "container">
+    <div class ="navigation">
+        <div class="lft"><span></span></div>
+        <div>
+            <p class="p1"></p>
+            <p class="p2"></p>
+        </div>
+        <div class="rght"><span></span></div>
+    </div>
+<table>
+
+
+    <thead>
+    <tr>
+        <th>пн</th>
+        <th>вт</th>
+        <th>ср</th>
+        <th>чт</th>
+        <th>пт</th>
+        <th>сб</th>
+        <th>вс</th>
+
+    </tr>
+    </thead>
+<tbody>
+</tbody>
+
+</table>
+</div>
+ <script>
+
+
+     function createCalendar(year0, month0) {
+       let d=new Date(year0, month0)
+         // месяцы в JS идут от 0 до 11, а не от 1 до 12
+         let tble = '<tr>';
+         // пробелы для первого ряда
+         // с понедельника до первого дня месяца
+         // * * * 1  2  3  4
+         for (let i = 0; i < getNewDay(d); i++) {
+             tble += '<td></td>';     /*пустые ячейки*/
+         }
+
+//смотрим все даты с 1 по последний месяц
+         let mon = month;
+         while (d.getMonth() == mon) {                  /*шак машины  4=4 */
+             tble += `<td>${d.getDate()} </td>`
+             /*каждый день должен делится на 7 --- %остаток%6*/
+             if (getNewDay(d) % 7 == 6)   /*как получить 6. делим на 7 остаток 7*/
+                 tble += `</tbl><tr>`
+             d.setDate(d.getDate() + 1);                           /*устоновить дату*/
+         }
+//добавить таблицу пустыми ячейками, если нужно 29 30 31 *  *  *
+         if (getNewDay(d) != 0) {
+             for (let i = getNewDay(d); i < 7; i++) {
+                 tble += '<td></td>';
+             }
+         }
+
+         //нужжно вос.. поставить 7-м днем недели а пн-кии... вт-кии.. сдвинуть на один день вперед
+         function getNewDay(date) {      /* получаем новый день + параметры даты*/
+             let day = date.getDay();
+             if (day == 0) day = 7; // сделать воскре (0) последним
+             return day - 1;
+         }
+
+
+         tble += '</tr>'
+         document.querySelector('tbody')
+             .innerHTML = tble;
+
+     }
+     const arrRussiaMonth = ['январь','февраль','март','апрель','май','июнь','июль', 'август','сентябрь',
+         'октибрь','ноябрь', 'декабрь']
+
+     let d = new Date()
+     let year=d.getFullYear()
+     let month =d.getMonth()
+     let dat0 = d.getDate()
+     function mowCalend(){
+
+
+
+         document.querySelector('.p1').innerHTML = arrRussiaMonth[month]
+         document.querySelector('.p2').innerHTML =year
+         createCalendar(year,month)
+
+         let listTd= document.querySelectorAll('td')
+
+
+           if (d.getMonth() == month && year== d.getFullYear())
+         for (let i= 0; i < listTd.length; i++)
+             if (listTd[i].innerHTML == dat0) {
+                 listTd[i].style.background = 'red'
+                 listTd[i].style.color = 'white'
+             }
+     }
+     mowCalend()
+
+     document.querySelector('.rght').onclick=function (){
+         month++
+         if (month == 12) {
+              month = 0
+             year++
+         }
+         mowCalend()
+
+     }
+
+ </script>
+</body>
+</html>

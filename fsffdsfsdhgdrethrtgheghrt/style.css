@@ -1,0 +1,12 @@
+div {
+    box-sizing: border-box;
+}
+
+
+
+div div {
+    background: red;
+    font-size: 15px;
+
+    height: 80px;
+}
